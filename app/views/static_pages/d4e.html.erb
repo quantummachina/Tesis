@@ -1,0 +1,95 @@
+<!-- CSS goes in the document HEAD or added to your external stylesheet -->
+<style type="text/css">
+table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+</style>
+
+<h1>Data for EViews</h1>
+<br>
+<%# 'Target1: ' + @targets.count.to_s + ' - Target2: ' + @target2s.count.to_s %>
+<%= 'Muestras: ' + (@targets.count+@target2s.count).to_s %>
+<br>
+<br>
+<table class="gridtable">
+<tr>
+  <th>User</th>
+  <th>@user</th>
+  <th>tid</th> 
+  <th>friends</th>
+  <th>followers</th>
+  <th>tweets</th>
+  <th>favorites</th>
+  <th>listed</th>
+  <th>since</th>
+  <th>f2f</th>
+  <th>tfr</th>
+  <th>ffr</th>
+  <th>UTC offset</th>
+  <th>FIC</th>
+  <th>adq</th>
+</tr>
+
+<% @targets.each do |u| %>
+	<% if !u.name.nil? && !u.nfollowers.nil? && !u.screen_name.nil?%>
+	<tr>
+	  <td><%=link_to(u.name, u)%></td>
+	  <td><%='@' + u.screen_name%></td>
+	  <td><%=u.uid.to_s%></td> 
+	  <td><%=u.nfriends.to_s%></td>
+	  <td><%=u.nfollowers.to_s%></td>
+	  <td><%=u.ntweets.to_s%></td>
+	  <td><%=u.nfavorites.to_s%></td>
+	  <td><%=u.nlisted.to_s%></td>
+	  <td><%=u.since.to_s%></td>
+	  <td><%= '%.4f' % u.f2f.to_s%></td>
+	  <td><%= '%.4f' % u.tfr.to_s%></td>
+	  <td><%= '%.4f' % u.ffr.to_s%></td>
+	  <td><%=u.utcoffset.to_s%></td>
+	  <td>1</td>
+	  <td><%=if u.retained then '1' else '0' end %></td>
+	</tr>	
+	<%end%>
+<% end%>
+
+<% @target2s.each do |u| %>
+	<% if !u.name.nil? && !u.nfollowers.nil? && !u.screen_name.nil?%>
+	<tr>
+	  <td><%=link_to(u.name, u)%></td>
+	  <td><%='@' + u.screen_name%></td>
+	  <td><%=u.uid.to_s%></td> 
+	  <td><%=u.nfriends.to_s%></td>
+	  <td><%=u.nfollowers.to_s%></td>
+	  <td><%=u.ntweets.to_s%></td>
+	  <td><%=u.nfavorites.to_s%></td>
+	  <td><%=u.nlisted.to_s%></td>
+	  <td><%=u.since.to_s%></td>
+	  <td><%= '%.4f' % u.f2f.to_s%></td>
+	  <td><%= '%.4f' % u.tfr.to_s%></td>
+	  <td><%= '%.4f' % u.ffr.to_s%></td>
+	  <td><%=u.utcoffset.to_s%></td>
+	  <td>0</td>
+	  <td><%=if u.retained then '1' else '0' end %></td>
+	</tr>	
+	<%end%>
+<% end%>
+</table>

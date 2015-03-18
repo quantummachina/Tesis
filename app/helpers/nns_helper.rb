@@ -1,0 +1,2 @@
+module NnsHelper
+end

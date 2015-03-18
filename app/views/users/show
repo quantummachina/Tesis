@@ -1,0 +1,12 @@
+<h2>Follower</h2>
+<h3><%= @user.name + ' - ' + @user.retsme.to_s%></h3>
+<p><%='Followers: ' + @user.nfollowers.to_s %></p>
+<p><%='Targets: ' + @targets.count.to_s %> - <%=link_to 'get targets (100)', controller: 'users', action: 'gettargets', id: @user.id %> </p>
+<br>
+@user - Name // followers / favorites / tweets
+<br>
+<br>
+<%@targets.each do |t|%>
+	<%= '@' + t.screen_name + ' - ' + t.name + ' // ' + t.nfollowers.to_s + ' / ' + t.nfavorites.to_s + ' / ' + t.ntweets.to_s%>
+	<br>
+<%end%>

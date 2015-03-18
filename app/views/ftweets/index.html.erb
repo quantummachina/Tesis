@@ -1,0 +1,9 @@
+<H2>FUNKALAB Tweets - <%=@tweets.count%></H2>
+<h3><%= link_to 'FWords', fwords_path %> </h3>
+<br>
+<p><%= link_to 'get FTweets', controller: 'ftweets', action: 'get_tweets' %></p>
+<br>
+<hr>
+<% @tweets.each do |t| %>
+	<h4><%= t.tid %> || <%= t.text %><h4>
+<%end%>

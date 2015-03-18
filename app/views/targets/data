@@ -1,0 +1,23 @@
+<h2>Targets <%= @targets.count.to_s%></h2>
+<br>
+nfollowers, nfriends, nfavorites, ntweets, since, nlisted, utcoffset
+<br>
+<% c=0 %>
+<% @targets.each do |u| %>
+	<% if !u.name.nil? && !u.nfollowers.nil? && !u.screen_name.nil? %>
+		<% if u.utcoffset.nil? then c = c+1 end %>
+		<%= u.nfollowers.to_s + ', ' + u.nfriends.to_s + ', ' + u.nfavorites.to_s + ', ' + u.ntweets.to_s + ', ' + u.since.to_s + ', ' + u.nlisted.to_s  %><%#(u.utcoffset.nil? ? '0' : u.utcoffset.to_s)%>
+		<br>
+	
+	<%end%>
+<% end%>
+<br>
+<% @targets.each do |u| %>
+	<% if !u.name.nil? && !u.nfollowers.nil? && !u.screen_name.nil? %>
+	
+		<%= (u.retained ? '1' : '0') %>
+		<br>
+	<%end%>
+<% end%>
+<br>
+<%= c.to_s %>

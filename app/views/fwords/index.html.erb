@@ -1,0 +1,9 @@
+<H2>FUNKALAB Words - <%=@words.count%></H2>
+<h3><%= link_to 'FTweets', ftweets_path %> </h3>
+<br>
+<p><%= link_to 'split words', controller: 'fwords', action: 'split_words' %></p>
+<br>
+<hr>
+<% @words.each do |w| %>
+	<h4><%= w.n %> - <%= w.s %><h4>
+<%end%>

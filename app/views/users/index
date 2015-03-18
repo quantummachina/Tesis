@@ -1,0 +1,13 @@
+<h2>Followers - <%=@fols.count.to_s%></h2>
+User: followers / favorites --- @user --- location // favsme / retsme / mentsme // f2f
+<br>
+<% @fols.each do |u| %>
+	<% if !u.name.nil? && !u.nfollowers.nil? && !u.screen_name.nil? && !u.location.nil? %>
+		<%= link_to(u.name, u) + ': '+  u.nfollowers.to_s+ ' / ' + u.nfavorites.to_s + '---' + ' @' + u.screen_name + ' --- ' + u.location + ' // ' + u.favsme.to_s + ' / '+ u.retsme.to_s + ' / '+ u.mentsme.to_s + ' // '  + u.f2f.to_s%> 
+	<%end%>
+	<br>
+<% end%>
+
+<br>
+<br>
+<%=link_to 'Get ALL targets', controller: 'users', action: 'getalltargets'%>

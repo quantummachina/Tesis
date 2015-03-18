@@ -1,0 +1,5 @@
+<h2>Followers built!</h2>
+<% @tuF.each do |l| %>
+	<%= l.nfollowers.to_s + ' --- ' + l.name + ' - @' + l.screen_name + ' --- ' + l.location %> 
+	<br>
+<% end%>

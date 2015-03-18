@@ -1,0 +1,52 @@
+<h1>Targets <%= @targets.count.to_s%></h1>
+<%=link_to 'clean targets', controller: 'targets', action: 'clean' %>
+<%=link_to 'Bust them all!', controller: 'targets', action: 'spam' %>
+<%=link_to 'Correct before NN', controller: 'targets', action: 'b4NN' %>
+<br><br>
+<%=link_to 'Convert to data', controller: 'targets', action: 'data' %>
+<br><br>
+
+<br><br>
+<table style="width:300px">
+<tr>
+  <td>User</td>
+  <td>@user</td>
+  <td>tid</td> 
+  <td>friends</td>
+  <td>followers</td>
+  <td>tweets</td>
+  <td>favorites</td>
+  <td>listed</td>
+  <td>since</td>
+  <td>f2f</td>
+  <td>tfr</td>
+  <td>ffr</td>
+  <td>UTC offset</td>
+  <td>FIC</td>
+  <td>spmmd</td>
+  <td>rtnd</td>
+</tr>
+
+<% @targets.each do |u| %>
+	<% if !u.name.nil? && !u.nfollowers.nil? && !u.screen_name.nil?%>
+	<tr>
+	  <td><%=link_to(u.name, u)%></td>
+	  <td><%='@' + u.screen_name%></td>
+	  <td><%=u.uid.to_s%></td> 
+	  <td><%=u.nfriends.to_s%></td>
+	  <td><%=u.nfollowers.to_s%></td>
+	  <td><%=u.ntweets.to_s%></td>
+	  <td><%=u.nfavorites.to_s%></td>
+	  <td><%=u.nlisted.to_s%></td>
+	  <td><%=u.since.to_s%></td>
+	  <td><%=u.f2f.to_s%></td>
+	  <td><%=u.tfr.to_s%></td>
+	  <td><%=u.ffr.to_s%></td>
+	  <td><%=u.utcoffset.to_s%></td>
+	  <td>1</td>
+	  <td><%=if u.spamed then '1' else '0' end %></td>
+	  <td><%=if u.retained then '1' else '0' end %></td>
+	</tr>	
+	<%end%>
+<% end%>
+</table>
